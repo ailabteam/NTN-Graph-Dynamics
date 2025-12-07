@@ -1,0 +1,23 @@
+# 03_Scenarios/Starlink_V1_Normal.yaml
+
+SCENARIO_NAME: "Starlink_V1_Normal"
+DESCRIPTION: "Mô phỏng 500 vệ tinh Starlink trong 60 phút, tối ưu hóa độ trễ."
+
+# --- Cấu hình Mô phỏng ---
+START_TIME: "2025-12-07T19:00:00Z"  # UTC ISO format
+DURATION_MINUTES: 60              # Tổng thời gian mô phỏng (60 phút)
+TIME_STEP_SECONDS: 60             # Bước thời gian giữa các snapshot đồ thị (1 phút)
+
+# --- Cấu hình Mạng/Vệ tinh ---
+CONSTELLATION: "STARLINK"         # Sử dụng dữ liệu Starlink
+SUBSET_SIZE: 500                  # Giới hạn 500 vệ tinh để demo tính toán nhanh (sẽ mở rộng sau)
+INCLUDE_GROUND_NODES: True        # Có thêm Trạm mặt đất (GS) không
+GS_LOCATION_FILE: "STATIONS_TLE"  # Tên file TLE để lấy vị trí GS
+
+# --- Ràng buộc Mạng (Link Model) ---
+MAX_ISL_DISTANCE_KM: 2700.0       # Khoảng cách tối đa cho ISL
+MAX_ISL_PER_SAT: 4                # Giới hạn 4 kết nối/vệ tinh
+MIN_ELEVATION_ANGLE_DEG: 10       # Góc nâng tối thiểu cho kết nối vệ tinh-mặt đất
+
+# --- Tối ưu hóa (Cho ACO/Q-ACO) ---
+OBJECTIVE: "DELAY_MINIMIZATION"   # Độ trễ (DELAY), Năng lượng (ENERGY), hoặc Đa mục tiêu (MULTI)
